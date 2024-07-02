@@ -1,21 +1,19 @@
-import React, {FC, ReactNode} from 'react';
-import IUser from "../../model/IUser";
+import React, {FC} from 'react';
+import {IUser} from "../../models/IUser";
+import './user-component.css'
 
-type UserComponentWithChildren<T> = T
-    & { children?: ReactNode }
-    & { clickHandler: (id: number) => void };
+interface IProps {
+    user: IUser
+    getPosts: (id:number) => void
+}
 
-const UserComponent: FC<UserComponentWithChildren<IUser>> = ({
-                                                                 id, name
-                                                                 , clickHandler
-                                                             }) => {
+const UserComponent: FC<IProps> = ({user, getPosts}) => {
     return (
-        <div> {id} - {name}
-            <button onClick={() => {
-                clickHandler(id);
-            }}>chose
-            </button>
+        <div className="user-item">
+            <h3>{user.id}. {user.name}</h3>
+            <button onClick={() => getPosts(user.id)}>show posts of this user</button>
         </div>
     );
 };
+
 export default UserComponent;
