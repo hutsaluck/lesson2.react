@@ -33,7 +33,7 @@ const UsersComponent = () => {
                         />))
                 }
             </div>
-            <h2>Posts</h2>
+            <h2>{posts.length ? `Posts`: ``}</h2>
             <div>
                 <PostsComponent posts={posts}/>
             </div>
